@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vigilar — Features — SEC-APAC-MB Docs</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+<nav class="topnav">
+    <a href="/" class="brand"><span class="brand-mark">🛡️</span><span class="brand-text">SEC-APAC-MB</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown"><a href="/products" class="nav-parent">Products ▾</a>
+        <div class="nav-dropdown-menu"><a href="/products/vigilar">🔥 Vigilar</a><a href="/products/arczt-vault">🔑 ARCZT Vault</a></div></div>
+      <a href="/docs">Docs</a><a href="/about">About</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
+    </div>
+  </nav>
+  
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <h3>Vigilar</h3>
+      <a href="/products/vigilar">Overview</a>
+      <a href="/docs/vigilar/features/" class="active">Features</a>
+      <a href="/docs/vigilar/security/">Security Model</a>
+      <a href="/products/vigilar/#technical-specs">Technical Specs</a>
+      <a href="/products/vigilar/#screenshots">Screenshots</a>
+      <a href="/products/vigilar/#vigilar-integration">ARCZT Integration</a>
+      <a href="/products/vigilar/#get-vigilar">Get Vigilar</a>
+      <h3>Other Products</h3>
+      <a href="/products/arczt-vault">ARCZT Vault</a>
+    </aside>
+
+    <main class="docs-content">
+      <span class="product-badge badge-vigilar">🔥 Vigilar</span>
+      <h1>Vigilar — Features</h1>
+      <p class="lead">Every feature runs on-device. No cloud, no account, no data collection.</p>
+
+      <div class="callout">
+        <div class="callout-title">🔒 On-device first</div>
+        All features below operate entirely locally. The only network call is the breach check, which uses k-anonymity hashing to protect your email address.
+      </div>
+
+      <h2>Feature Overview</h2>
+
+      <h3>Security Dashboard</h3>
+      <p>
+        The Security Dashboard gives you a real-time view of your macOS system's security posture.
+        It monitors Gatekeeper status, System Integrity Protection (SIP), FileVault encryption state,
+        the application firewall, and XProtect definitions — all at a glance. Each control shows
+        its current status (enabled, disabled, or warning) with a one-tap toggle or a direct link
+        to the relevant System Settings pane so you can take action immediately.
+      </p>
+      <p>
+        The dashboard refreshes on launch and on system wake, ensuring you always see the current
+        state of your device's built-in protections.
+      </p>
+
+      <h3>Breach Monitor</h3>
+      <p>
+        Breach Monitor checks your email address against known data breaches using the Have I Been
+        Pwned (HIBP) API. To protect your privacy, Vigilar never sends your full email address.
+        Instead, it computes the SHA-1 hash of your email locally, sends only the first 5 characters
+        of that hash to HIBP, and filters the returned breach list locally on your device.
+      </p>
+      <p>
+        This k-anonymity approach means HIBP never knows which specific email you're checking —
+        only that you're in a range of approximately 200 hashes. Your email address never leaves
+        your device in a form that could identify you.
+      </p>
+
+      <h3>AI Companion Chat</h3>
+      <p>
+        Vigilar includes a built-in AI companion powered by Ember Prime v8c, a custom-trained 12B
+        parameter language model. The model is quantized to Q4_K_M (approximately 7.4 GB) and runs
+        entirely on your device via <code>llama.cpp</code> on desktop and MLC on mobile.
+      </p>
+      <p>
+        No API calls are made. No conversation data is sent to any server. The model loads into
+        your device's RAM at startup and performs all inference locally. You can ask it about
+        security threats, get explanations of system alerts, or request guidance on hardening
+        your device — all without a network connection.
+      </p>
+      <p>
+        On Apple Silicon Macs with 16 GB or more RAM, the model loads in under 10 seconds and
+        generates responses at 15–25 tokens per second. On Android, the MLC runtime provides
+        hardware-accelerated inference where supported.
+      </p>
+
+      <h3>Threat Detection</h3>
+      <p>
+        Vigilar continuously scans your system for indicators of compromise. This includes:
+      </p>
+      <ul>
+        <li><strong>Suspicious processes</strong> — Monitors running processes against known-bad signatures and behavioral heuristics, flagging processes that exhibit unusual resource consumption, network activity, or persistence behavior.</li>
+        <li><strong>Launch agents</strong> — Audits all launch daemons and launch agents (<code>/Library/LaunchDaemons</code>, <code>/Library/LaunchAgents</code>, <code>~/Library/LaunchAgents</code>) for suspicious entries, unsigned binaries, or unexpected persistence mechanisms.</li>
+        <li><strong>Open ports</strong> — Enumerates all listening TCP and UDP ports and maps them to owning processes, so you can identify unauthorized services or potential attack surfaces.</li>
+        <li><strong>Installed apps audit</strong> — Maintains an inventory of installed applications and flags those from unidentified developers, unsigned packages, or known-vulnerable versions.</li>
+      </ul>
+
+      <h3>Security Score</h3>
+      <p>
+        The Security Score is a weighted assessment of your device's security posture on a 0–100
+        scale. Each security control (Gatekeeper, SIP, FileVault, Firewall, XProtect, threat
+        scan results, breach status) contributes a weighted portion of the total score.
+      </p>
+      <p>
+        Along with the numeric score, Vigilar provides actionable recommendations: specific steps
+        you can take to improve your score, such as enabling FileVault, removing a suspicious launch
+        agent, or updating a vulnerable application. Recommendations are prioritized by impact, so
+        the highest-value fixes appear first.
+      </p>
+
+      <h3>Identity Theft Protection</h3>
+      <p>
+        Vigilar performs offline heuristic analysis of your exposure to identity theft vectors.
+        This includes checking for credentials stored in plaintext, assessing the strength and
+        uniqueness of passwords detected in your system keychain, and identifying patterns that
+        suggest elevated risk (such as reused passwords or outdated recovery information).
+      </p>
+      <p>
+        All analysis is done locally — no personal data is transmitted. The feature provides a
+        summary of exposure vectors and recommended mitigations, helping you reduce your identity
+        theft risk without sending any sensitive information to a third party.
+      </p>
+
+      <h3>System Monitor</h3>
+      <p>
+        The System Monitor provides real-time tracking of running processes and resource usage.
+        It shows CPU, memory, and network activity per process, with the ability to drill into
+        any process for details on its origin, code signature, and network connections.
+      </p>
+      <p>
+        The monitor is designed to be lightweight — it samples system metrics at a configurable
+        interval (default: 5 seconds) and uses minimal CPU itself. You can set thresholds to
+        trigger alerts when processes exceed expected resource usage, which can indicate malware
+        or compromised applications.
+      </p>
+
+      <h3>ARCZT Vault Link</h3>
+      <p>
+        Vigilar connects to ARCZT Personal Vault through a deep-link bridge. When Vigilar detects
+        a breach involving a domain that matches an entry in your ARCZT safe, it sends a
+        deep-link notification to ARCZT containing only breach metadata: the affected domain,
+        breach name, breach date, and severity level.
+      </p>
+      <p>
+        No credentials are shared between the two apps. Vigilar does not read your vault contents,
+        and ARCZT does not receive any information about your Vigilar scans beyond the breach
+        metadata. The connection is one-directional: Vigilar pushes breach metadata to ARCZT, never
+        the other way around.
+      </p>
+
+      <h2>Get Vigilar</h2>
+      <p>
+        Vigilar is currently in pre-release. Direct APK and DMG installs are available.
+        Google Play and App Store listings are pending.
+      </p>
+      <p>
+        <a href="/#get-started" class="btn btn-primary" style="margin-top:8px">Request Test Build</a>
+        <a href="https://github.com/SEC-APAC-MB/vigilar-app" style="margin-left:12px">View source on GitHub →</a>
+      </p>
+    </main>
+  </div>
+</body>
+</html>

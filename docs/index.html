@@ -13,39 +13,77 @@
     <div class="nav-links">
       <div class="nav-dropdown"><a href="/products" class="nav-parent">Products ▾</a>
         <div class="nav-dropdown-menu"><a href="/products/vigilar">🔥 Vigilar</a><a href="/products/arczt-vault">🔑 ARCZT Vault</a></div></div>
-      <a href="/docs" style="color:var(--amber)">Docs</a><a href="/about">About</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
+      <a href="/docs" style="color:var(--amber)">Docs</a><a href="/about">About</a><a href="/#get-started" class="nav-cta">Request Test Build</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
     </div>
   </nav>
 
   <main class="landing">
     <section class="hero" style="padding-bottom:32px">
       <h1>Documentation</h1>
-      <p class="hero-sub">Product docs and technical references. Everything you need to deploy, use, and integrate our products.</p>
+      <p class="hero-sub">Product docs, guides, and technical references.</p>
     </section>
 
     <section class="section">
-      <h2 class="section-title">Product Documentation</h2>
-      <div class="products">
-        <a href="/products/vigilar" class="product-card">
-          <div class="product-icon">🔥</div>
-          <h3>Vigilar Docs</h3>
-          <p class="product-tag">Security Companion</p>
-          <p class="product-desc">Overview, features, security model, installation, pricing, ARCZT integration, FAQ.</p>
-          <span class="product-link">Read docs →</span>
+      <h2 class="section-title">🔥 Vigilar</h2>
+      <div class="docs-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:32px">
+        <a href="/products/vigilar" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Overview</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Product summary and screenshots</p>
         </a>
-        <a href="/products/arczt-vault" class="product-card">
-          <div class="product-icon">🔑</div>
-          <h3>ARCZT Vault Docs</h3>
-          <p class="product-tag">Credential Manager</p>
-          <p class="product-desc">Overview, features, security model, installation, Vigilar integration, FAQ.</p>
-          <span class="product-link">Read docs →</span>
+        <a href="/docs/vigilar/features" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Features</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Detailed feature documentation</p>
+        </a>
+        <a href="/docs/vigilar/security" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Security Model</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">On-device architecture and privacy</p>
+        </a>
+        <a href="/docs/vigilar/install" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Installation</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">macOS and Android setup guide</p>
+        </a>
+        <a href="/docs/vigilar/pricing" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Pricing</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Free, Pro, and Family plans</p>
+        </a>
+        <a href="/docs/vigilar/faq" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>FAQ</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Common questions answered</p>
+        </a>
+      </div>
+
+      <h2 class="section-title">🔑 ARCZT Vault</h2>
+      <div class="docs-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+        <a href="/products/arczt-vault" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Overview</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Product summary and screenshots</p>
+        </a>
+        <a href="/docs/arczt-vault/features" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Features</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Detailed feature documentation</p>
+        </a>
+        <a href="/docs/arczt-vault/security" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Security Model</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Encryption, zero-knowledge, quantum resistance</p>
+        </a>
+        <a href="/docs/arczt-vault/install" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Installation</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Self-hosted, desktop, and mobile setup</p>
+        </a>
+        <a href="/docs/arczt-vault/pricing" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>Pricing</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Free, Pro, Family, and self-hosted</p>
+        </a>
+        <a href="/docs/arczt-vault/faq" class="doc-link" style="display:block;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none">
+          <strong>FAQ</strong>
+          <p style="font-size:13px;color:var(--text-dim);margin:4px 0 0">Common questions answered</p>
         </a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-links"><a href="/products">Products</a><a href="/docs">Docs</a><a href="/about">About</a><a href="https://github.com/SEC-APAC-MB">GitHub</a></div>
+    <div class="footer-links"><a href="/products">Products</a><a href="/docs">Docs</a><a href="/about">About</a><a href="/#get-started">Request Test Build</a><a href="https://github.com/SEC-APAC-MB">GitHub</a></div>
     <p>© 2026 SEC-APAC-MB. All rights reserved.</p>
   </footer>
 </body>

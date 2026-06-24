@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCZT Vault — FAQ | SEC-APAC-MB Docs</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+<nav class="topnav">
+    <a href="/" class="brand"><span class="brand-mark">🛡️</span><span class="brand-text">SEC-APAC-MB</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown"><a href="/products" class="nav-parent">Products ▾</a>
+        <div class="nav-dropdown-menu"><a href="/products/vigilar">🔥 Vigilar</a><a href="/products/arczt-vault">🔑 ARCZT Vault</a></div></div>
+      <a href="/docs">Docs</a><a href="/about">About</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <h3>ARCZT Vault</h3>
+      <a href="/products/arczt-vault">Overview</a>
+      <a href="/products/arczt-vault/#key-features">Features</a>
+      <a href="/products/arczt-vault/#security-model">Security Model</a>
+      <a href="/products/arczt-vault/#technical-specs">Technical Specs</a>
+      <a href="/products/arczt-vault/#screenshots">Screenshots</a>
+      <a href="/products/arczt-vault/#vigilar-integration">Vigilar Integration</a>
+      <a href="/docs/arczt-vault/pricing/">Pricing</a>
+      <a href="/docs/arczt-vault/faq/" class="active">FAQ</a>
+      <a href="/products/arczt-vault/#get-arczt-vault">Get ARCZT</a>
+      <h3>Other Products</h3>
+      <a href="/products/vigilar">Vigilar</a>
+    </aside>
+
+    <main class="docs-content">
+      <span class="product-badge badge-arczt">🔑 ARCZT</span>
+      <h1>ARCZT Vault — FAQ</h1>
+      <p class="lead">Frequently asked questions about ARCZT Personal Vault.</p>
+
+      <h3>Can ARCZT see my passwords?</h3>
+      <p>No. Your safe is encrypted with AES-256-GCM. Your master password derives the encryption key via Argon2id. We never see your master password or your decrypted data.</p>
+
+      <h3>Is ARCZT quantum-resistant?</h3>
+      <p>AES-256 symmetric encryption is considered quantum-resistant. Grover's algorithm reduces effective security to 128-bit, which is still computationally infeasible to break.</p>
+
+      <h3>Can I sync across devices?</h3>
+      <p>ARCZT is local-first. Self-hosted deployments can sync via your own server. Standalone apps are per-device.</p>
+
+      <h3>What happens if I forget my master password?</h3>
+      <p>Your data is unrecoverable. This is the trade-off of zero-knowledge. We recommend keeping a secure backup of your master password.</p>
+
+      <h3>How does the Vigilar integration work?</h3>
+      <p>When Vigilar detects a breach, it sends breach metadata (domain, breach name, date, severity) to ARCZT via deep link. ARCZT matches the domain against your safe entries and shows you which are affected. No credentials flow between apps.</p>
+
+      <h3>Can I use ARCZT without Vigilar?</h3>
+      <p>Yes. ARCZT works standalone. The Vigilar breach link is an optional integration.</p>
+
+      <h3>Is there a browser extension?</h3>
+      <p>Yes, in the Pro tier. The extension autofills from your vault without exposing the safe. Per-domain isolation prevents cross-site credential leakage.</p>
+
+      <h3>Can I self-host ARCZT?</h3>
+      <p>Yes. Docker Compose deployment is free with all features unlocked. Community support only.</p>
+
+      <h3>What platforms are supported?</h3>
+      <p>Web (Next.js), Android (Kotlin), iOS (Swift planned), browser extension (Chrome/Firefox).</p>
+
+      <h2>Get ARCZT Vault</h2>
+      <p>
+        <a href="/#get-started" class="btn btn-primary" style="margin-top:8px">Get ARCZT</a>
+      </p>
+    </main>
+  </div>
+</body>
+</html>

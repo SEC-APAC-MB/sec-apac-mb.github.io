@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCZT Vault — Security Model — SEC-APAC-MB Docs</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+<nav class="topnav">
+    <a href="/" class="brand"><span class="brand-mark">🛡️</span><span class="brand-text">SEC-APAC-MB</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown"><a href="/products" class="nav-parent">Products ▾</a>
+        <div class="nav-dropdown-menu"><a href="/products/vigilar">🔥 Vigilar</a><a href="/products/arczt-vault">🔑 ARCZT Vault</a></div></div>
+      <a href="/docs">Docs</a><a href="/about">About</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
+    </div>
+  </nav>
+  
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <h3>ARCZT Vault</h3>
+      <a href="/products/arczt-vault">Overview</a>
+      <a href="/docs/arczt-vault/features/">Features</a>
+      <a href="/docs/arczt-vault/security/" class="active">Security Model</a>
+      <a href="/products/arczt-vault/#technical-specs">Technical Specs</a>
+      <a href="/products/arczt-vault/#screenshots">Screenshots</a>
+      <a href="/products/arczt-vault/#vigilar-integration">Vigilar Integration</a>
+      <a href="/products/arczt-vault/#get-arczt-vault">Get ARCZT</a>
+      <h3>Other Products</h3>
+      <a href="/products/vigilar">Vigilar</a>
+    </aside>
+
+    <main class="docs-content">
+      <span class="product-badge badge-arczt">🔑 ARCZT</span>
+      <h1>ARCZT Vault — Security Model</h1>
+      <p class="lead">Zero-knowledge encryption. Your master password never leaves your device. We can't decrypt your data — we don't have your key.</p>
+
+      <div class="callout">
+        <div class="callout-title">🔐 Zero-knowledge by design</div>
+        ARCZT Vault is built so that your encrypted safe can only be opened with your master password. The master password is never stored, never transmitted, and never processed on any server.
+      </div>
+
+      <h2>Zero-Knowledge Architecture</h2>
+      <p>
+        ARCZT Vault uses a zero-knowledge architecture. Your master password is used solely to derive
+        the encryption key that unlocks your safe. It is never stored on disk, never transmitted over
+        any network, and never sent to ARCZT's servers (or anyone else's). The key derivation and
+        encryption/decryption all happen locally on your device.
+      </p>
+      <p>
+        This means that even if ARCZT's servers were compromised, an attacker would find only
+        encrypted blobs that cannot be decrypted without your master password. We don't have your
+        key, and we don't want it.
+      </p>
+
+      <h2>Encryption</h2>
+      <p>
+        All safe entries are encrypted with <strong>AES-256-GCM</strong> (Galois/Counter Mode), which
+        provides both confidentiality and integrity (authenticated encryption). Any tampering with
+        ciphertext is detected on decryption.
+      </p>
+      <p>
+        The encryption key is derived from your master password using <strong>Argon2id</strong>, a
+        memory-hard key derivation function designed to resist GPU and ASIC brute-force attacks.
+        The parameters are:
+      </p>
+      <ul>
+        <li><strong>Memory:</strong> 64 MB per derivation — forces attackers to use significant RAM per guess</li>
+        <li><strong>Iterations:</strong> 3 — number of passes over the memory buffer</li>
+        <li><strong>Parallelism:</strong> 4 — number of parallel lanes for computation</li>
+        <li><strong>Salt:</strong> 16 bytes, cryptographically random, unique per safe — prevents rainbow table attacks</li>
+      </ul>
+      <p>
+        Argon2id was selected over PBKDF2 and bcrypt because it is resistant to both time-memory
+        trade-offs and side-channel attacks, and is the recommended password hashing algorithm by the
+        Password Hashing Competition (PHC).
+      </p>
+
+      <h2>Quantum Resistance</h2>
+      <p>
+        ARCZT Vault's symmetric encryption (AES-256) is considered quantum-resistant. Grover's
+        algorithm, the most relevant quantum attack against symmetric ciphers, provides a quadratic
+        speedup — effectively reducing AES-256's security to 128-bit against a quantum adversary.
+      </p>
+      <p>
+        128-bit security is still considered infeasible to break with current and near-future
+        quantum computers. For context, brute-forcing 128 bits would require approximately
+        2^128 operations, which is beyond the capability of any projected quantum computer.
+      </p>
+      <p>
+        The Argon2id key derivation is also quantum-resistant: memory-hard functions are not
+        meaningfully accelerated by quantum computation. The key derivation cost is dominated by
+        memory access patterns, not raw computation, which quantum computers do not speed up.
+      </p>
+
+      <h2>Auto-Lock &amp; Biometrics</h2>
+      <p>
+        ARCZT Vault auto-locks after a configurable idle timeout (default: 5 minutes). When
+        locked, the decrypted key is purged from memory and the safe becomes inaccessible without
+        re-entering the master password.
+      </p>
+      <p>
+        For convenience, ARCZT supports biometric re-unlock (Face ID on macOS/iOS, fingerprint
+        sensor on Android). When biometric unlock is enabled, the master password is used to derive
+        a key that is stored in the platform's secure enclave (Secure Enclave on Apple Silicon,
+        StrongBox on Android). Biometric authentication unlocks this enclave-stored key — your
+        master password itself is never stored, only the derived key, and only in hardware-backed
+        secure storage.
+      </p>
+      <p>
+        You can configure the idle timeout from 1 minute to 30 minutes, or set it to "never"
+        (not recommended). Biometric unlock can be toggled independently of the auto-lock timer.
+      </p>
+
+      <h2>Network Isolation</h2>
+      <p>
+        ARCZT Vault operates entirely offline. There is no telemetry, no sync, no cloud backup,
+        and no account requirement. The safe is local only — it lives in an encrypted file on your
+        device's storage.
+      </p>
+      <p>
+        This means there is nothing to intercept. No credentials are transmitted over any network.
+        No metadata about your safe entries (domains, usernames, timestamps) is ever sent anywhere.
+        The safe cannot be accessed remotely because it has no network presence.
+      </p>
+      <p>
+        Backups are your responsibility — and by design. You can export an encrypted backup of
+        your safe at any time. The backup file is encrypted with the same AES-256-GCM + Argon2id
+        parameters as the live safe, so it can only be restored with your master password.
+      </p>
+
+      <h2>Browser Extension Security</h2>
+      <p>
+        The ARCZT browser extension can autofill credentials from your vault without exposing the
+        full safe. The extension communicates with the ARCZT desktop app over a local IPC channel
+        (not over the network). When you navigate to a login page, the extension requests
+        credentials for that specific domain.
+      </p>
+      <p>
+        Per-domain isolation ensures that each website can only access credentials intended for
+        its domain. A credential for <code>example.com</code> cannot be read by
+        <code>attacker.com</code>. The extension verifies the current URL against the credential's
+        associated domain before offering autofill.
+      </p>
+      <p>
+        The extension never receives the decrypted safe — it receives only the specific entry
+        needed for the current page, and only after user confirmation. The extension does not
+        cache credentials in browser storage.
+      </p>
+
+      <h2>Vigilar Bridge Security</h2>
+      <p>
+        ARCZT connects to Vigilar through a one-directional deep-link bridge. When Vigilar detects
+        a breach, it sends a deep-link notification to ARCZT containing only breach metadata:
+        the affected domain, breach name, breach date, and severity level.
+      </p>
+      <p>
+        No credentials flow between the two apps. Vigilar does not read your vault contents.
+        ARCZT does not send any safe entries to Vigilar. The connection is strictly one-way:
+        Vigilar pushes breach metadata, ARCZT receives it and matches it against local entries.
+      </p>
+      <p>
+        The deep-link bridge uses the platform's native URL scheme handling
+        (<code>arczt://</code> on desktop, intent URIs on Android). No shared database, no
+        shared filesystem, no shared process. The two apps are fully isolated except for this
+        narrow metadata-only channel.
+      </p>
+
+      <h2>Get ARCZT Vault</h2>
+      <p>
+        ARCZT Personal Vault is in development. Source code is on GitHub.
+      </p>
+      <p>
+        <a href="/#get-started" class="btn btn-primary" style="margin-top:8px">Request Test Build</a>
+        <a href="https://github.com/SEC-APAC-MB/ARCZT-Personal-Vault" style="margin-left:12px">View source on GitHub →</a>
+      </p>
+    </main>
+  </div>
+</body>
+</html>

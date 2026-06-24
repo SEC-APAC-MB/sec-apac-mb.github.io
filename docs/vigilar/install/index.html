@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vigilar — Installation — SEC-APAC-MB</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+<nav class="topnav">
+  <a href="/" class="brand"><span class="brand-mark">🛡️</span><span class="brand-text">SEC-APAC-MB</span></a>
+  <div class="nav-links">
+    <div class="nav-dropdown"><a href="/products" class="nav-parent">Products ▾</a>
+      <div class="nav-dropdown-menu"><a href="/products/vigilar">🔥 Vigilar</a><a href="/products/arczt-vault">🔑 ARCZT Vault</a></div></div>
+    <a href="/docs">Docs</a><a href="/about">About</a><a href="/#get-started" class="nav-cta">Request Test Build</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
+  </div>
+</nav>
+
+<div class="docs-layout">
+  <aside class="docs-sidebar">
+    <h3>Vigilar</h3>
+    <a href="/products/vigilar">Overview</a>
+    <a href="/docs/vigilar/features">Features</a>
+    <a href="/docs/vigilar/security">Security Model</a>
+    <a href="/docs/vigilar/install" class="active">Installation</a>
+    <a href="/docs/vigilar/pricing">Pricing</a>
+    <a href="/docs/vigilar/faq">FAQ</a>
+    <h3>Other Products</h3>
+    <a href="/products/arczt-vault">ARCZT Vault</a>
+  </aside>
+
+  <main class="docs-content">
+    <span class="product-badge badge-vigilar">🔥 Vigilar</span>
+    <h1>Installation</h1>
+    <p class="lead">Install Vigilar on macOS or Android. No account required, no cloud setup.</p>
+
+    <h2>macOS (Apple Silicon)</h2>
+    <h3>Requirements</h3>
+    <ul>
+      <li>macOS 12.0 or later</li>
+      <li>Apple Silicon (M1, M2, M3, M4)</li>
+      <li>16GB RAM minimum (8GB used by AI model)</li>
+      <li>1GB free disk space</li>
+    </ul>
+    <h3>Steps</h3>
+    <ol>
+      <li>Download the <code>Vigilar-x.x.x-arm64.dmg</code> file</li>
+      <li>Open the DMG and drag Vigilar to Applications</li>
+      <li>Launch Vigilar from Applications</li>
+      <li>On first launch, macOS may warn about an unidentified developer. Right-click → Open to bypass.</li>
+      <li>Vigilar loads the AI model (7.4GB) into RAM — this takes ~10 seconds</li>
+    </ol>
+    <div class="callout">
+      <div class="callout-title">💾 Model bundled</div>
+      The AI model is included in the DMG. No additional download required after installation.
+    </div>
+
+    <h2>Android</h2>
+    <h3>Requirements</h3>
+    <ul>
+      <li>Android 8.0 (API 26) or later</li>
+      <li>8GB RAM minimum</li>
+      <li>500MB free storage</li>
+    </ul>
+    <h3>Steps</h3>
+    <ol>
+      <li>Download the <code>Vigilar-x.x.x.apk</code> file</li>
+      <li>Enable "Install from unknown sources" in Android Settings → Security</li>
+      <li>Open the APK file to install</li>
+      <li>Launch Vigilar</li>
+    </ol>
+    <div class="callout">
+      <div class="callout-title">📱 Mobile model</div>
+      Android uses a smaller model quantization (4-bit, ~4GB) to fit within mobile memory constraints.
+    </div>
+
+    <h2>iOS</h2>
+    <p>iOS support is planned. The codebase is shared with Android via React Native. App Store submission is pending.</p>
+
+    <h2>Post-Install Setup</h2>
+    <ol>
+      <li><strong>License activation</strong> — Enter your license key (emailed after purchase). Free tier requires no key.</li>
+      <li><strong>Breach monitor</strong> — Enter your email to check against known breaches. Uses k-anonymity — your full email never leaves the device.</li>
+      <li><strong>ARCZT Vault link</strong> (optional) — If ARCZT Vault is installed, tap "Open in ARCZT Vault" on any breach alert to link entries.</li>
+    </ol>
+
+    <h2>Uninstall</h2>
+    <ul>
+      <li><strong>macOS:</strong> Drag Vigilar from Applications to Trash. No leftover files — Vigilar stores nothing outside the app bundle except the license in Keychain.</li>
+      <li><strong>Android:</strong> Settings → Apps → Vigilar → Uninstall.</li>
+    </ul>
+    <div class="callout">
+      <div class="callout-title">🔒 Clean removal</div>
+      Vigilar stores only a license heartbeat in SecureStore/Keychain. No chat history, no cached data, no config files. Uninstalling removes everything.
+    </div>
+
+    <h2>Troubleshooting</h2>
+    <h3>Model won't load</h3>
+    <p>Ensure you have enough free RAM. Close other memory-intensive apps. The model needs ~8GB on desktop, ~4GB on mobile.</p>
+    <h3>macOS "unidentified developer" warning</h3>
+    <p>Right-click the app → Open → Open Anyway. This is expected for DMG installs outside the Mac App Store.</p>
+    <h3>Breach monitor shows no results</h3>
+    <p>Ensure you have an internet connection. Breach checks use the HIBP API which requires network access. All other features work offline.</p>
+
+    <h2>Get Vigilar</h2>
+    <p>
+      <a href="/#get-started" class="btn btn-primary" style="margin-top:8px">Request Test Build</a>
+      <a href="https://github.com/SEC-APAC-MB/vigilar-app" style="margin-left:12px">View source on GitHub →</a>
+    </p>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-links"><a href="/products">Products</a><a href="/docs">Docs</a><a href="/about">About</a><a href="/#get-started">Request Test Build</a><a href="https://github.com/SEC-APAC-MB">GitHub</a></div>
+  <p>© 2026 SEC-APAC-MB. All rights reserved.</p>
+</footer>
+</body>
+</html>

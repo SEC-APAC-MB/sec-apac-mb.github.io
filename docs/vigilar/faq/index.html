@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vigilar — FAQ</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+<nav class="topnav">
+    <a href="/" class="brand"><span class="brand-mark">🛡️</span><span class="brand-text">SEC-APAC-MB</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown"><a href="/products" class="nav-parent">Products ▾</a>
+        <div class="nav-dropdown-menu"><a href="/products/vigilar">🔥 Vigilar</a><a href="/products/arczt-vault">🔑 ARCZT Vault</a></div></div>
+      <a href="/docs" style="color:var(--amber)">Docs</a><a href="/about">About</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <h3>Vigilar</h3>
+      <a href="/products/vigilar">Overview</a>
+      <a href="/products/vigilar/#key-features">Features</a>
+      <a href="/products/vigilar/#how-it-works">Security Model</a>
+      <a href="/products/vigilar/#technical-specs">Technical Specs</a>
+      <a href="/products/vigilar/#screenshots">Screenshots</a>
+      <a href="/products/vigilar/#vigilar-integration">ARCZT Integration</a>
+      <a href="/docs/vigilar/pricing/">Pricing</a>
+      <a href="/docs/vigilar/faq/" class="active">FAQ</a>
+      <a href="/products/vigilar/#get-vigilar">Get Vigilar</a>
+      <h3>Other Products</h3>
+      <a href="/products/arczt-vault">ARCZT Vault</a>
+    </aside>
+
+    <main class="docs-content">
+      <span class="product-badge badge-vigilar">🔥 Vigilar</span>
+      <h1>Vigilar — FAQ</h1>
+      <p class="lead">Common questions about Vigilar's privacy, model, platform support, and pricing.</p>
+
+      <h3>Does Vigilar send my data to the cloud?</h3>
+      <p>No. Everything runs on your device. The AI model runs locally. Breach checks use k-anonymity (only first 5 chars of SHA-1 hash sent).</p>
+
+      <h3>What model does Vigilar use?</h3>
+      <p>Ember Prime v8c, a 12B parameter model quantized to 4-bit (7.4GB). It runs via llama.cpp on desktop and MLC on mobile.</p>
+
+      <h3>How much RAM do I need?</h3>
+      <p>16GB minimum for desktop (model uses ~8GB). 8GB minimum on mobile (smaller quantization).</p>
+
+      <h3>Does it work offline?</h3>
+      <p>Yes, fully offline after installation. Breach checks need internet (HIBP API), but everything else works offline.</p>
+
+      <h3>Is it open source?</h3>
+      <p>The app source is on GitHub (github.com/SEC-APAC-MB/vigilar-app). The model is built on Apache 2.0 licensed components.</p>
+
+      <h3>What platforms are supported?</h3>
+      <p>macOS (Apple Silicon, DMG installer) and Android (APK). iOS planned via App Store.</p>
+
+      <h3>How does the ARCZT Vault link work?</h3>
+      <p>Deep-link bridge. Vigilar sends breach metadata (domain, name, date, severity) to ARCZT. No credentials are shared. The two apps are separate products.</p>
+
+      <h3>Can I use Vigilar without ARCZT Vault?</h3>
+      <p>Yes. Vigilar works standalone. ARCZT integration is optional.</p>
+
+      <h3>What's the difference between Free and Pro?</h3>
+      <p>Free includes all security features (dashboard, breach monitor, threat detection, security score). Pro adds AI Companion Chat, priority breach alerts, and identity theft protection.</p>
+
+      <h3>Is there a family plan?</h3>
+      <p>Yes. €19.99/month covers 5 devices with shared breach monitoring and a family security dashboard.</p>
+
+      <h2>Get Vigilar</h2>
+      <p>
+        Vigilar is currently in pre-release. Direct APK and DMG installs are available.
+      </p>
+      <p>
+        <a href="/#get-started" class="btn btn-primary" style="margin-top:8px">Get Vigilar</a>
+      </p>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-links"><a href="/products">Products</a><a href="/docs">Docs</a><a href="/about">About</a><a href="https://github.com/SEC-APAC-MB">GitHub</a></div>
+    <p>© 2026 SEC-APAC-MB. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCZT Vault — Installation — SEC-APAC-MB</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+<nav class="topnav">
+  <a href="/" class="brand"><span class="brand-mark">🛡️</span><span class="brand-text">SEC-APAC-MB</span></a>
+  <div class="nav-links">
+    <div class="nav-dropdown"><a href="/products" class="nav-parent">Products ▾</a>
+      <div class="nav-dropdown-menu"><a href="/products/vigilar">🔥 Vigilar</a><a href="/products/arczt-vault">🔑 ARCZT Vault</a></div></div>
+    <a href="/docs">Docs</a><a href="/about">About</a><a href="/#get-started" class="nav-cta">Request Test Build</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
+  </div>
+</nav>
+
+<div class="docs-layout">
+  <aside class="docs-sidebar">
+    <h3>ARCZT Vault</h3>
+    <a href="/products/arczt-vault">Overview</a>
+    <a href="/docs/arczt-vault/features">Features</a>
+    <a href="/docs/arczt-vault/security">Security Model</a>
+    <a href="/docs/arczt-vault/install" class="active">Installation</a>
+    <a href="/docs/arczt-vault/pricing">Pricing</a>
+    <a href="/docs/arczt-vault/faq">FAQ</a>
+    <h3>Other Products</h3>
+    <a href="/products/vigilar">Vigilar</a>
+  </aside>
+
+  <main class="docs-content">
+    <span class="product-badge badge-arczt">🔑 ARCZT</span>
+    <h1>Installation</h1>
+    <p class="lead">Install ARCZT Vault as a desktop app, mobile app, or self-hosted service.</p>
+
+    <h2>Self-Hosted (Docker Compose)</h2>
+    <h3>Requirements</h3>
+    <ul>
+      <li>Docker 20.10+ and Docker Compose 2.0+</li>
+      <li>2GB RAM minimum</li>
+      <li>1GB free disk space</li>
+    </ul>
+    <h3>Steps</h3>
+    <ol>
+      <li>Clone the repository: <code>git clone https://github.com/SEC-APAC-MB/ARCZT-Personal-Vault.git</code></li>
+      <li>Navigate to the project: <code>cd ARCZT-Personal-Vault</code></li>
+      <li>Copy the environment file: <code>cp .env.example .env</code></li>
+      <li>Edit <code>.env</code> — set your <code>SECRET_KEY</code>, <code>POSTGRES_PASSWORD</code>, and <code>REDIS_PASSWORD</code></li>
+      <li>Start the stack: <code>docker compose up -d</code></li>
+      <li>Access the web UI at <code>http://localhost:3000</code></li>
+    </ol>
+    <div class="callout">
+      <div class="callout-title">🆓 Free and unlimited</div>
+      Self-hosting is free with all features unlocked. Community support only.
+    </div>
+
+    <h2>Desktop App (Planned)</h2>
+    <h3>macOS</h3>
+    <ul>
+      <li>Download <code>ARCZT-Vault-x.x.x-arm64.dmg</code></li>
+      <li>Open DMG and drag to Applications</li>
+      <li>Launch and create your master password</li>
+    </ul>
+    <h3>Windows</h3>
+    <ul>
+      <li>Download <code>ARCZT-Vault-Setup-x.x.x.exe</code></li>
+      <li>Run installer and follow prompts</li>
+    </ul>
+
+    <h2>Mobile Apps</h2>
+    <h3>Android</h3>
+    <ul>
+      <li>Download <code>ARCZT-Vault-x.x.x.apk</code></li>
+      <li>Enable "Install from unknown sources"</li>
+      <li>Open APK to install</li>
+    </ul>
+    <h3>iOS</h3>
+    <p>Planned — Swift implementation in development.</p>
+
+    <h2>Browser Extension</h2>
+    <h3>Chrome / Firefox</h3>
+    <ol>
+      <li>Install from Chrome Web Store or Firefox Add-ons (pending review)</li>
+      <li>Click the ARCZT icon in your browser toolbar</li>
+      <li>Enter your vault URL (self-hosted) or connect to desktop app</li>
+      <li>Autofill works on login forms — the extension never exposes your safe</li>
+    </ol>
+
+    <h2>Post-Install Setup</h2>
+    <ol>
+      <li><strong>Create master password</strong> — Choose a strong password. This derives your encryption key. There is no recovery.</li>
+      <li><strong>Set up MFA</strong> (Pro tier) — Add TOTP authenticator for vault access</li>
+      <li><strong>Add entries</strong> — Manually add credentials or import from CSV (1Password, Bitwarden, LastPass formats supported)</li>
+      <li><strong>Enable Vigilar link</strong> (optional) — If Vigilar is installed, breach alerts will deep-link to ARCZT</li>
+    </ol>
+
+    <h2>Import from Other Managers</h2>
+    <p>ARCZT supports CSV import from:</p>
+    <ul>
+      <li>1Password</li>
+      <li>Bitwarden</li>
+      <li>LastPass</li>
+      <li>KeePass (CSV export)</li>
+      <li>Chrome / Firefox (built-in password manager export)</li>
+    </ul>
+
+    <h2>Backup</h2>
+    <p>Your encrypted safe file can be exported at any time. The export is encrypted — it cannot be read without your master password. Store it safely.</p>
+    <div class="callout">
+      <div class="callout-title">⚠️ Master password</div>
+      If you lose your master password, your data is unrecoverable. This is the trade-off of zero-knowledge encryption. Keep a secure backup.
+    </div>
+
+    <h2>Get ARCZT Vault</h2>
+    <p>
+      <a href="/#get-started" class="btn btn-primary" style="margin-top:8px">Request Test Build</a>
+      <a href="https://github.com/SEC-APAC-MB/ARCZT-Personal-Vault" style="margin-left:12px">View source on GitHub →</a>
+    </p>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-links"><a href="/products">Products</a><a href="/docs">Docs</a><a href="/about">About</a><a href="/#get-started">Request Test Build</a><a href="https://github.com/SEC-APAC-MB">GitHub</a></div>
+  <p>© 2026 SEC-APAC-MB. All rights reserved.</p>
+</footer>
+</body>
+</html>

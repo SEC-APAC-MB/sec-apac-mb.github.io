@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vigilar — Security Model — SEC-APAC-MB Docs</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+<nav class="topnav">
+    <a href="/" class="brand"><span class="brand-mark">🛡️</span><span class="brand-text">SEC-APAC-MB</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown"><a href="/products" class="nav-parent">Products ▾</a>
+        <div class="nav-dropdown-menu"><a href="/products/vigilar">🔥 Vigilar</a><a href="/products/arczt-vault">🔑 ARCZT Vault</a></div></div>
+      <a href="/docs">Docs</a><a href="/about">About</a><a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
+    </div>
+  </nav>
+  
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <h3>Vigilar</h3>
+      <a href="/products/vigilar">Overview</a>
+      <a href="/docs/vigilar/features/">Features</a>
+      <a href="/docs/vigilar/security/" class="active">Security Model</a>
+      <a href="/products/vigilar/#technical-specs">Technical Specs</a>
+      <a href="/products/vigilar/#screenshots">Screenshots</a>
+      <a href="/products/vigilar/#vigilar-integration">ARCZT Integration</a>
+      <a href="/products/vigilar/#get-vigilar">Get Vigilar</a>
+      <h3>Other Products</h3>
+      <a href="/products/arczt-vault">ARCZT Vault</a>
+    </aside>
+
+    <main class="docs-content">
+      <span class="product-badge badge-vigilar">🔥 Vigilar</span>
+      <h1>Vigilar — Security Model</h1>
+      <p class="lead">No cloud. No telemetry. No background services. Your data never leaves your device.</p>
+
+      <div class="callout">
+        <div class="callout-title">🔒 On-device architecture</div>
+        Vigilar is designed around a simple principle: your security data should never leave your device. Every feature — AI chat, threat detection, breach checks — runs locally or uses privacy-preserving protocols.
+      </div>
+
+      <h2>On-Device Architecture</h2>
+      <p>
+        Vigilar runs entirely on your device. The AI companion model (Ember Prime v8c, 12B parameters,
+        Q4_K_M quantization) loads into your device's RAM at startup and performs all inference locally
+        via <code>llama.cpp</code> on desktop and MLC on mobile. No network connection is required after
+        installation — the model, threat signatures, and breach-check logic are all bundled.
+      </p>
+      <p>
+        The only network call Vigilar makes is the breach check, which contacts the Have I Been Pwned
+        API using a k-anonymity protocol (see below). Even this call does not transmit your email
+        address in a form that could identify you.
+      </p>
+
+      <h2>Data Persistence</h2>
+      <p>
+        Vigilar stores only a license heartbeat — a small validation token used to confirm your
+        license is active. This token is stored securely using <code>SecureStore</code> on Android
+        and <code>Keychain</code> on macOS. No chat conversations are persisted to disk. No scan
+        results are stored in <code>localStorage</code> or any cloud database. There is no cloud
+        sync of any kind.
+      </p>
+      <p>
+        When you close Vigilar, your chat history is gone. When you reopen it, the model reloads
+        fresh. This is intentional — there is nothing to steal, because there is nothing stored.
+      </p>
+
+      <h2>Breach Check Privacy</h2>
+      <p>
+        Breach checks use the Have I Been Pwned (HIBP) API with k-anonymity hashing. Here's how it works:
+      </p>
+      <ul>
+        <li>Vigilar computes the SHA-1 hash of your email address locally on your device.</li>
+        <li>Only the first 5 characters of that hash are sent to HIBP — not your email, not the full hash.</li>
+        <li>HIBP returns all breach entries that match that 5-character prefix (approximately 200 hashes).</li>
+        <li>Vigilar filters the returned list locally to find matches for your full hash.</li>
+        <li>Your full email address and full hash never leave your device.</li>
+      </ul>
+      <p>
+        HIBP never knows which specific email you're checking. They only see that someone with a hash
+        starting with those 5 characters made a request. This is the same k-anonymity model used
+        by major password managers and is considered the gold standard for breach-check privacy.
+      </p>
+
+      <h2>AI Model Security</h2>
+      <p>
+        The AI companion is powered by Ember Prime v8c, a 12B parameter model custom-trained by
+        SEC-APAC-MB. The model is quantized to Q4_K_M format (approximately 7.4 GB) and runs in
+        Vigilar's process memory. It does not make any external API calls.
+      </p>
+      <p>
+        The model has no network access. It cannot phone home, exfiltrate data, or communicate with
+        any server. All prompts and responses exist only in your device's RAM during the active
+        session and are discarded when the app closes. The model binary is included in the app
+        bundle and loaded locally at startup.
+      </p>
+      <p>
+        Ember Prime v8c was trained with governance and safety constraints. It includes a
+        fingerprint layer that identifies it as an SEC-APAC-MB model and a governance LoRA that
+        biases responses toward security best practices. The model will not generate instructions
+        for exploiting vulnerabilities or crafting malware.
+      </p>
+
+      <h2>License Verification</h2>
+      <p>
+        Vigilar uses a lightweight license verification system. On launch, it sends a heartbeat
+        to Stripe's license validation endpoint containing only your license key. Stripe confirms
+        whether the key is valid and active. The result is cached locally for a configurable period
+        (default: 7 days), so Vigilar can operate offline between checks.
+      </p>
+      <p>
+        There is no always-online DRM. If the heartbeat fails (e.g., you're offline), Vigilar
+        continues to operate using the cached validation result. Only the license key is transmitted
+        — no usage data, no chat content, no scan results.
+      </p>
+
+      <h2>Attack Surface</h2>
+      <p>
+        Vigilar is designed to minimize its own attack surface:
+      </p>
+      <ul>
+        <li><strong>No listening ports</strong> — Vigilar does not open any network ports. It does not run a web server, API server, or any service that accepts inbound connections.</li>
+        <li><strong>No background services</strong> — Vigilar does not run as a daemon or background service. It is active only when the app is open. When closed, it consumes no CPU and has no network presence.</li>
+        <li><strong>No telemetry</strong> — Vigilar does not collect, aggregate, or transmit usage analytics. There are no tracking pixels, no crash reporters that send data without consent, and no usage counters.</li>
+        <li><strong>No third-party SDKs</strong> — Vigilar does not include third-party analytics or advertising SDKs. The only external dependency is the HIBP API for breach checks.</li>
+      </ul>
+
+      <h2>Threat Model</h2>
+      <p>
+        <strong>What Vigilar protects against:</strong>
+      </p>
+      <ul>
+        <li>Misconfigured macOS security controls (disabled Gatekeeper, SIP, FileVault, Firewall)</li>
+        <li>Known data breaches affecting your email address</li>
+        <li>Suspicious processes and persistence mechanisms (launch agents, daemons)</li>
+        <li>Unauthorized open ports and network services</li>
+        <li>Outdated or vulnerable installed applications</li>
+        <li>Weak identity theft posture (reused passwords, plaintext credentials)</li>
+      </ul>
+      <p>
+        <strong>What Vigilar does not protect against:</strong>
+      </p>
+      <ul>
+        <li>Zero-day exploits with no known signatures or behavioral patterns</li>
+        <li>Kernel-level rootkits that operate below the process monitoring layer</li>
+        <li>Physical device compromise (evil maid attacks) — use FileVault for disk encryption</li>
+        <li>Network-level attacks — use a firewall and VPN for network protection</li>
+        <li>Social engineering — the AI companion can advise, but it cannot prevent you from voluntarily giving away credentials</li>
+      </ul>
+      <p>
+        Vigilar is a detection and advisory tool. It is not a replacement for EDR (Endpoint Detection
+        and Response) solutions in enterprise environments. For personal devices and small teams,
+        Vigilar provides strong baseline protection and security awareness.
+      </p>
+
+      <h2>Get Vigilar</h2>
+      <p>
+        Vigilar is currently in pre-release. Direct APK and DMG installs are available.
+        Google Play and App Store listings are pending.
+      </p>
+      <p>
+        <a href="/#get-started" class="btn btn-primary" style="margin-top:8px">Request Test Build</a>
+        <a href="https://github.com/SEC-APAC-MB/vigilar-app" style="margin-left:12px">View source on GitHub →</a>
+      </p>
+    </main>
+  </div>
+</body>
+</html>
