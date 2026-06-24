@@ -67,6 +67,15 @@ a:hover { text-decoration: underline; }
 }
 .nav-links > a:hover, .nav-parent:hover { color: var(--text); text-decoration: none; }
 .nav-github { color: var(--amber) !important; }
+.nav-cta {
+  background: var(--amber);
+  color: #0D1117 !important;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+.nav-cta:hover { background: #FFB140; text-decoration: none; }
 
 /* Dropdown */
 .nav-dropdown {

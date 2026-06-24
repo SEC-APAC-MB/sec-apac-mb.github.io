@@ -6,6 +6,7 @@
   <title>SEC-APAC-MB — Cybersecurity Products</title>
   <meta name="description" content="SEC-APAC-MB builds on-device cybersecurity products. Real-time threat visibility, breach monitoring, credential management. No cloud dependency.">
   <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/form.css">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 </head>
 <body>
@@ -24,6 +25,7 @@
       </div>
       <a href="/docs">Docs</a>
       <a href="/about">About</a>
+      <a href="/#get-started" class="nav-cta">Request Test Build</a>
       <a href="https://github.com/SEC-APAC-MB" class="nav-github">GitHub ↗</a>
     </div>
   </nav>
@@ -122,6 +124,52 @@
       </div>
     </section>
 
+    <!-- Interest Form -->
+    <section class="section" id="get-started">
+      <h2 class="section-title">Request a Test Build</h2>
+      <p style="font-size:16px;color:var(--text-dim);max-width:600px;margin-bottom:32px;">
+        Vigilar and ARCZT Vault are in pre-release. Request early access and we'll send you a test build for your platform.
+      </p>
+      <form class="interest-form" id="interest-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="form-name">Name</label>
+            <input type="text" id="form-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-field">
+            <label for="form-email">Email</label>
+            <input type="email" id="form-email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="form-platform">Platform</label>
+            <select id="form-platform" name="platform">
+              <option value="macOS">macOS</option>
+              <option value="Android">Android</option>
+              <option value="Both">Both</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="form-product">Product</label>
+            <select id="form-product" name="product">
+              <option value="Vigilar">Vigilar</option>
+              <option value="ARCZT Vault">ARCZT Vault</option>
+              <option value="Both">Both</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="form-message">Message <span style="color:var(--text-faint)">(optional)</span></label>
+          <textarea id="form-message" name="message" rows="3" placeholder="Tell us about your use case..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Request Test Build</button>
+        <p class="form-note" id="form-note" style="display:none">
+          ✅ Your email client will open with your request pre-filled. Just hit send.
+        </p>
+      </form>
+    </section>
+
     <!-- Principles -->
     <section class="principles">
       <h2>What we believe</h2>
@@ -151,9 +199,41 @@
       <a href="/products">Products</a>
       <a href="/docs">Docs</a>
       <a href="/about">About</a>
+      <a href="/#get-started">Request Test Build</a>
       <a href="https://github.com/SEC-APAC-MB">GitHub</a>
     </div>
     <p>© 2026 SEC-APAC-MB. All rights reserved.</p>
   </footer>
+
+<script>
+(function() {
+  var form = document.getElementById('interest-form');
+  if (!form) return;
+  var note = document.getElementById('form-note');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var name = document.getElementById('form-name').value.trim();
+    var email = document.getElementById('form-email').value.trim();
+    var platform = document.getElementById('form-platform').value;
+    var product = document.getElementById('form-product').value;
+    var message = document.getElementById('form-message').value.trim();
+
+    var subject = 'Test Build Request — ' + product + ' (' + platform + ')';
+    var body = 'Name: ' + name + '\n';
+    body += 'Email: ' + email + '\n';
+    body += 'Product: ' + product + '\n';
+    body += 'Platform: ' + platform + '\n';
+    if (message) body += 'Message: ' + message + '\n';
+
+    var mailto = 'mailto:contact@sec-apac-mb.github.io?subject=' +
+      encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailto;
+    note.style.display = 'block';
+  });
+})();
+</script>
 </body>
 </html>
