@@ -1,59 +1,46 @@
-# SEC-APAC-MB Product Documentation
+# SEC-APAC-MB GitHub Pages
 
-Static docs site for SEC-APAC-MB cybersecurity products.
-
-## Products
-
-- **Vigilar** — On-device security companion (macOS, Android). Real-time threat monitoring, AI chat, breach alerts.
-- **ARCZT Personal Vault** — Zero-knowledge, quantum-resistant credential manager.
+Product website for SEC-APAC-MB cybersecurity products:
+- **Vigilar** — On-device AI security companion
+- **ARCZT Vault** — Zero-knowledge credential manager
 
 ## Structure
 
 ```
-├── index.html              ← Landing page (company overview + product cards + interest form)
-├── _config.yml             ← Jekyll/GitHub Pages config
-├── assets/
-│   ├── styles.css          ← All styling (dark theme, responsive)
-│   ├── form.css            ← Interest form styles
-│   └── favicon.svg         ← Shield + flame logo
-├── about/
-│   └── index.html          ← About page
+├── index.html              # Landing page with interest form
+├── about/                  # Company about page
 ├── products/
-│   ├── index.html           ← Products overview
-│   ├── vigilar/index.html   ← Vigilar product page
-│   └── arczt-vault/index.html ← ARCZT Vault product page
+│   ├── index.html          # Products overview
+│   ├── vigilar/            # Vigilar product page
+│   └── arczt-vault/        # ARCZT Vault product page
 ├── docs/
-│   ├── index.html           ← Docs landing (links to all sub-pages)
+│   ├── index.html          # Docs landing
 │   ├── vigilar/
-│   │   ├── features/index.html
-│   │   ├── security/index.html
-│   │   ├── install/index.html
-│   │   ├── pricing/index.html
-│   │   └── faq/index.html
+│   │   ├── features/       # Feature documentation
+│   │   ├── security/       # Security model
+│   │   ├── install/        # Installation guide
+│   │   ├── pricing/        # Pricing tiers
+│   │   └── faq/            # FAQ
 │   └── arczt-vault/
-│       ├── features/index.html
-│       ├── security/index.html
-│       ├── install/index.html
-│       ├── pricing/index.html
-│       └── faq/index.html
-└── README.md
+│       ├── features/
+│       ├── security/
+│       ├── install/
+│       ├── pricing/
+│       └── faq/
+├── assets/
+│   ├── styles.css          # Main stylesheet
+│   ├── form.css            # Interest form styles
+│   ├── favicon.svg         # Shield favicon
+│   └── screenshots/        # Product screenshots
+├── robots.txt              # SEO
+└── sitemap.xml             # Sitemap
 ```
 
-## GitHub Repos
+## Tech
 
-- **Org**: https://github.com/SEC-APAC-MB
-- **This site**: https://github.com/SEC-APAC-MB/sec-apac-mb.github.io
-- **Vigilar app**: https://github.com/SEC-APAC-MB/vigilar-app
-- **ARCZT Vault**: Source coming soon — see org page for updates
+Static HTML + CSS. No build step, no JavaScript frameworks.
+GitHub Pages serves from the `main` branch.
 
-## Deploy
+## License
 
-This is a static site hosted on GitHub Pages. Push to the `main` branch of
-`SEC-APAC-MB/sec-apac-mb.github.io` and GitHub Pages auto-deploys.
-
-## Conventions
-
-- All pages include: canonical URL, nav with "Request Test Build" CTA, consistent footer
-- Docs pages include: "View source on GitHub" and "Edit this page on GitHub" links at bottom
-- Sidebar links use no trailing slashes (e.g., `/docs/vigilar/features` not `/docs/vigilar/features/`)
-- ARCZT Vault GitHub links point to org page (repo doesn't exist yet)
+Content © 2026 SEC-APAC-MB. All rights reserved.

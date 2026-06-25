@@ -7,6 +7,15 @@
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="canonical" href="https://sec-apac-mb.github.io/docs/arczt-vault/install">
+  <meta property="og:title" content="ARCZT Vault — Installation — SEC-APAC-MB">
+  <meta property="og:description" content="On-device cybersecurity products. No cloud, no tracking, no compromise.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sec-apac-mb.github.io/docs/arczt-vault/install">
+  <meta property="og:image" content="https://sec-apac-mb.github.io/assets/favicon.svg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ARCZT Vault — Installation — SEC-APAC-MB">
+  <meta name="twitter:description" content="On-device cybersecurity products. No cloud, no tracking, no compromise.">
+  <meta name="description" content="SEC-APAC-MB — SEC-APAC-MB. On-device cybersecurity.">
 </head>
 <body>
 <nav class="topnav">
@@ -45,7 +54,7 @@
     </ul>
     <h3>Steps</h3>
     <ol>
-      <li>ARCZT Vault source is coming soon. Check the <a href="https://github.com/SEC-APAC-MB">SEC-APAC-MB GitHub org</a> for updates.</li>
+      <li>Clone the repository: <code>git clone https://github.com/SEC-APAC-MB/arczt-vault.git</code></li>
       <li>Copy the environment file: <code>cp .env.example .env</code></li>
       <li>Edit <code>.env</code> — set your <code>SECRET_KEY</code>, <code>POSTGRES_PASSWORD</code>, and <code>REDIS_PASSWORD</code></li>
       <li>Start the stack: <code>docker compose up -d</code></li>
