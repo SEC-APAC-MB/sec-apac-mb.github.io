@@ -30,19 +30,16 @@
 
   <div class="docs-layout">
     <aside class="docs-sidebar">
-      <h3>Vigilar</h3>
-      <a href="/products/vigilar" class="active">Overview</a>
-      <a href="/docs/vigilar/features">Features</a>
-      <a href="/docs/vigilar/security">Security Model</a>
-      <a href="/docs/vigilar/install">Installation</a>
-      <a href="/docs/vigilar/pricing">Pricing</a>
-      <a href="/docs/vigilar/faq">FAQ</a>
-      <a href="/products/vigilar/#screenshots">Screenshots</a>
-      <a href="/products/vigilar/#vigilar-integration">ARCZT Integration</a>
-      <a href="/products/vigilar/#get-vigilar">Get Vigilar</a>
-      <h3>Other Products</h3>
-      <a href="/products/arczt-vault">ARCZT Vault</a>
-    </aside>
+    <h3>Vigilar</h3>
+    <a href="/products/vigilar" class="active">Overview</a>
+    <a href="/docs/vigilar/features">Features</a>
+    <a href="/docs/vigilar/security">Security Model</a>
+    <a href="/docs/vigilar/install">Installation</a>
+    <a href="/docs/vigilar/pricing">Pricing</a>
+    <a href="/docs/vigilar/faq">FAQ</a>
+    <h3>Other Products</h3>
+    <a href="/products/arczt-vault">ARCZT Vault</a>
+  </aside>
 
     <main class="docs-content">
       <span class="product-badge badge-vigilar">🔥 Vigilar</span>
@@ -95,6 +92,18 @@
         Breach monitoring uses the Have I Been Pwned API with k-anonymity: only the first 5
         characters of your email's SHA-1 hash are sent, and Vigilar filters the results locally.
         Your full email address never leaves your device.
+      </p>
+
+      <h2 id="vigilar-integration">ARCZT Vault Integration</h2>
+      <p>
+        Vigilar connects to ARCZT Personal Vault through a deep-link bridge. When a breach
+        monitor result matches a credential stored in your ARCZT safe, Vigilar can open
+        ARCZT directly to the affected entry — letting you update or rotate the compromised
+        password without manually searching your vault.
+      </p>
+      <p>
+        The bridge is local-only: both apps communicate via an OS-level deep-link protocol
+        (URI scheme on macOS, Intent on Android). No data passes through any server.
       </p>
 
       <h2 id="technical-specs">Technical Specs</h2>
